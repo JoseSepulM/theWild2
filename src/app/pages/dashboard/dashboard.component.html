@@ -1,0 +1,55 @@
+<div id="dv-container-content" class="container-fluid h-100 mt-5">
+    <div class="row p-5">
+        <div class="col-sm-12 col-md-12 col-lg-4 mt-3">
+            <app-cards
+                [cardClass]="'card-header card-header-first'"
+                [bodyText]="'Usuarios activos: 150'">
+            ></app-cards>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4 mt-3">
+            <app-cards
+                [cardClass]="'card-header card-header-second'"
+                [bodyText]="'Actividades ingresadas: 62'">
+            ></app-cards>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-4 mt-3">
+            <app-cards
+                [cardClass]="'card-header card-header-third'"
+                [bodyText]="'Consultas en curso: 12'">
+            ></app-cards>
+        </div>
+    </div>
+    <div class="row p-5 h-100">
+        <div class="col-sm-12 col-md-4 col-lg-4 h-100">
+            <div class="card shadow h-100">
+                <div class="card-header card-header-first">
+                    <span class="spn_text_title">Ranking actividad consultas</span>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item spn_text_info">An item</li>
+                        <li class="list-group-item spn_text_info">A second item</li>
+                        <li class="list-group-item spn_text_info">A third item</li>
+                        <li class="list-group-item spn_text_info">A fourth item</li>
+                        <li class="list-group-item spn_text_info">And a fifth one</li>
+                        <li class="list-group-item spn_text_info">An item</li>
+                        <li class="list-group-item spn_text_info">A second item</li>
+                        <li class="list-group-item spn_text_info">A third item</li>
+                        <li class="list-group-item spn_text_info">A fourth item</li>
+                        <li class="list-group-item spn_text_info">And a fifth one</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8 h-100">
+            <div class="card shadow h-100">
+                <div class="card-header card-header-fourth">
+                    <span class="spn_text_title">Cuadro resumen</span>
+                </div>
+                <div class="card-body">
+                    <app-chart></app-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
