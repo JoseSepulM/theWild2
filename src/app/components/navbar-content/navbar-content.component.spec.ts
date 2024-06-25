@@ -1,23 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavbarContentComponent } from './navbar-content.component';
-
-describe('NavbarContentComponent', () => {
-  let component: NavbarContentComponent;
+describe('NavbarComponent', () => {
+  let componente: NavbarContentComponent;
   let fixture: ComponentFixture<NavbarContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavbarContentComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(NavbarContentComponent);
-    component = fixture.componentInstance;
+    componente = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('debería crear el componente', () => {
+    expect(componente).toBeTruthy();
+  });
+
+  it('debería mostrar el título correcto en la barra de navegación', () => {
+    componente.titleNavBar = 'Título de Prueba';
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const titleElement = compiled.querySelector('.navbar-brand');
+    expect(titleElement?.textContent).toContain('Título de Prueba');
+  });
+
+  it('debería llamar al método salir al hacer clic en el botón de salir', () => {
+    spyOn(componente, 'salir');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const botonSalir = compiled.querySelector('#btn_salir') as HTMLButtonElement;
+    botonSalir.click();
+    expect(componente.salir).toHaveBeenCalled();
   });
 });

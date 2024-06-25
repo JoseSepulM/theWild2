@@ -2,6 +2,19 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 
+
+/**
+ * @description
+ * Componente que crea un grafico demostrativo
+ * Este componente muestra una grafico con valores demostrativos en barras
+ */
+
+/**
+ * @usageNotes
+ * 
+ * 1. Importa este componente para mostrar valores a travez de un grafico
+ */
+
 @Component({
   selector: 'app-chart',
   standalone: true,

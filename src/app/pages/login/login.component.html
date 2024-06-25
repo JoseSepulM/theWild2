@@ -59,50 +59,56 @@
                                                 <h1 class="fw-light">Registro</h1>
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
-                                            <div class="col">
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"></span>
-                                                    <input type="text" class="form-control valid" placeholder="Nombre usuario" aria-label="Username" aria-describedby="basic-addon1" id="txtNameUserRegister" #txtNameUserRegister>
+                                        <form [formGroup]="miFormulario" (ngSubmit)="submitForm()">
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1"></span>
+                                                        <input type="text" class="form-control" id="nombre" placeholder="Nombre usuario" formControlName="nombre">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"></span>
-                                                    <input type="text" class="form-control" placeholder="Correo electronico" aria-label="Username" aria-describedby="basic-addon1" id="txtCorreoUserRegister" #txtCorreoUserRegister>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1"></span>
+                                                        <input type="text" class="form-control" id="email" placeholder="Correo electronico"  formControlName="email">
+                                                        <!-- <div *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre').hasError('required')">
+                                                            Nombre es obligatorio
+                                                        </div> -->
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1"></span>
-                                                    <input type="password" class="form-control" placeholder="Clave secreta" aria-label="clave" aria-describedby="basic-addon1">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1"></span>
+                                                        <input type="password" class="form-control" id="pass" placeholder="Password" formControlName="pass">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <ul class="requirement-list">
-                                                    <li>
-                                                        <span>Almenos 8 caracteres (a-z, A-Z, 0-9)</span>
-                                                    </li>
-                                                    <li>
-                                                        <span>Una mayuscula (A-Z)</span>
-                                                    </li>
-                                                    <li>
-                                                        <span>Un numero (0-9)</span>
-                                                    </li>
-                                                </ul>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <ul class="requirement-list">
+                                                        <li>
+                                                            <span>Almenos 8 caracteres (a-z, A-Z, 0-9)</span>
+                                                        </li>
+                                                        <li>
+                                                            <span>Una mayuscula (A-Z)</span>
+                                                        </li>
+                                                        <li>
+                                                            <span>Un numero (0-9)</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col">
-                                                <button type="button" class="btn btn-outline-success w-100">Registrarse</button>
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <button type="submit" class="btn btn-outline-success w-100">Registrarse</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
