@@ -1,1 +1,110 @@
-<p>usuarios works!</p>
+<div id="dv-container-content" class="container-fluid h-100 mt-5">
+    <app-navbar-content
+        [titleNavBar]="'The Wild'"
+    ></app-navbar-content>
+    <div class="row p-5 h-100">
+        <div class="col-12 h-100">
+            <div class="card shadow h-100">
+                <div class="card-header card-header-first">
+                    <span class="spn_text_title">Mantenedor de usuarios</span>
+                </div>
+                <div class="card-body">
+                    <div class="scrollable-div p-3">
+                        <table id="tbl_usuarios" class="table table-hover table-text-color">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><button (click)="agregarPersona()" type="button" class="btn btn-outline-dark btn-sm"> + Nuevo usuario</button></th>
+                                    <th scope="col">username</th>
+                                    <th scope="col">correo</th>
+                                    <th scope="col">rol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let persona of personas">
+                                    <td class="d-flex">
+                                        <button class="btn btn-primary" (click)="editarUsuario(persona)">Modificar</button>
+                                        <button class="btn btn-danger" (click)="eliminar(persona.username)">Eliminar</button>
+                                    </td>
+                                    <td>{{ persona.username }}</td>
+                                    <td>{{ persona.correo }}</td>
+                                    <td>{{ persona.role }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Add-->
+<div *ngIf="showModal" class="modal fade show" style="display: block;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para agregar usuario -->
+                <form (ngSubmit)="submitFormAdd()">
+                    <div class="form-group mt-3">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="correo">Correo</label>
+                        <input type="email" class="form-control" id="correo" [(ngModel)]="correo" name="correo" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="rol">Rol</label>
+                        <input type="text" class="form-control" id="rol" [(ngModel)]="rol" name="rol" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Agregar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="hideModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add-->
+<div *ngIf="showModalEdit" class="modal fade show" style="display: block;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para agregar usuario -->
+                <form (ngSubmit)="submitFormEdit()">
+                    <div class="form-group mt-3">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" required readonly>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="correo">Correo</label>
+                        <input type="email" class="form-control" id="correo" [(ngModel)]="correo" name="correo" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="rol">Rol</label>
+                        <input type="text" class="form-control" id="rol" [(ngModel)]="rol" name="rol" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="hideModalEdit()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

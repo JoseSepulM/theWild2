@@ -66,6 +66,9 @@
                                                         <span class="input-group-text" id="basic-addon1"></span>
                                                         <input type="text" class="form-control" id="nombre" placeholder="Nombre usuario" formControlName="nombre">
                                                     </div>
+                                                    <div *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre')?.hasError('required')">
+                                                        <span class="dv_validate">Campo requerido</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -73,10 +76,9 @@
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text" id="basic-addon1"></span>
                                                         <input type="text" class="form-control" id="email" placeholder="Correo electronico"  formControlName="email">
-                                                        <!-- <div *ngIf="miFormulario.get('nombre')?.touched && miFormulario.get('nombre').hasError('required')">
-                                                            Nombre es obligatorio
-                                                        </div> -->
-                                                        
+                                                    </div>
+                                                    <div *ngIf="miFormulario.get('email')?.touched && miFormulario.get('email')?.hasError('required')">
+                                                        <span class="dv_validate">Campo requerido</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -85,6 +87,9 @@
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text" id="basic-addon1"></span>
                                                         <input type="password" class="form-control" id="pass" placeholder="Password" formControlName="pass">
+                                                    </div>
+                                                    <div *ngIf="miFormulario.get('pass')?.touched && miFormulario.get('pass')?.hasError('required')">
+                                                        <span class="dv_validate">Campo requerido</span>
                                                     </div>
                                                 </div>
                                             </div>
