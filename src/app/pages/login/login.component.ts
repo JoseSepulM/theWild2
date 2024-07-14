@@ -1,15 +1,18 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { data_dataUsuarios } from '../../../data/login-helper-data';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UsuariosService } from '../../services/usuarios.services';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule, HttpClientModule, FormsModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
+    providers : [UsuariosService]
 })
 
 export class LoginComponent implements OnInit {
@@ -27,10 +30,13 @@ export class LoginComponent implements OnInit {
     miFormulario!: FormGroup;
     imgLogin: string;
 
+    personas  : any[] = [];
+
     constructor(
         private renderer: Renderer2,
         private router: Router,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private usuariosService : UsuariosService
 
     ) {
         this.imgLogin = "assets/images/photoLogin.png";
@@ -38,6 +44,9 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
 
+        this.usuariosService.getJsonData().subscribe(data=>{
+            this.personas = data;
+        })
         this.showHideCards();
         this.recuperarContrasenia();
         this.miFormulario = this.fb.group({
@@ -52,6 +61,22 @@ export class LoginComponent implements OnInit {
     submitForm(): void {
 
         if (this.miFormulario.valid) {
+
+            const newUser = {
+                username : this.miFormulario.value.nombre,
+                correo : this.miFormulario.value.email,
+                password : this.miFormulario.value.pass,
+                role : 'user'
+            };
+            
+            this.personas.push(newUser);
+            this.usuariosService.MetodoPersona(this.personas);
+            this.miFormulario.reset();
+
+            alert('Usuario registrado');
+
+            
+
         }
         else {
             this.markAllAsTouched();
@@ -106,18 +131,23 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-
         const user = this.txtNombreUsuario.nativeElement.value;
         const pass = this.txtClaveSecreta.nativeElement.value;
 
-        const sessionUser = data_dataUsuarios.find(element => element.username === user);
-        if (sessionUser) {
-            if (sessionUser.password == pass) {
-                this.router.navigate(['contenido']);
+
+        const userLogin = this.personas.find((element) => element.username == user);
+
+        if(userLogin){
+            if(userLogin.password == pass){
+                localStorage.setItem('userSession', userLogin.username);
+                this.router.navigate([(userLogin.role == 'Admin' ? 'contenido' : 'consultas')]);
+            }
+            else{
+                alert('Password incorrecta!')
             }
         }
-        else {
-            alert("Not found");
+        else{
+            alert('Usuario no encontrado!');
         }
     }
 }
