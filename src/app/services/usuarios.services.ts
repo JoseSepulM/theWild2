@@ -17,7 +17,7 @@ export class UsuariosService{
     }
 
     // private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/angular-json-cc447.appspot.com/o/usuarios.json?alt=media&token=f44c87f7-a346-4cc4-a123-6766ea77e663';
-    private jsonUrl = '/api/v0/b/angular-json-cc447.appspot.com/o/usuarios.json?alt=media&token=f44c87f7-a346-4cc4-a123-6766ea77e663';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/angular-json-cc447.appspot.com/o/usuarios.json?alt=media&token=f44c87f7-a346-4cc4-a123-6766ea77e663';
     private lista : any;
 
     constructor(private http : HttpClient){}

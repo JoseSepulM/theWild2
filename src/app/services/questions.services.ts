@@ -15,7 +15,7 @@ export class QuestionService{
         })
     }
 
-    private jsonUrl = '/api/v0/b/angular-json-cc447.appspot.com/o/questions.json?alt=media&token=0e1eb372-ca9e-4db3-a652-f3a3b32e0372';
+    private jsonUrl = 'https://firebasestorage.googleapis.com/v0/b/angular-json-cc447.appspot.com/o/questions.json?alt=media&token=0e1eb372-ca9e-4db3-a652-f3a3b32e0372';
     private lista : any;
 
     constructor(private http : HttpClient){}
